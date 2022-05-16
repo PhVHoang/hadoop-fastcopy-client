@@ -1,4 +1,6 @@
 from pywhdfs.utils import hglob
+from pywhdfs.utils.utils import HdfsError
+
 from threading import Lock
 from progressbar import AnimatedMarker, Bar, FileTransferSpeed, Percentage, ProgressBar, RotatingMarker, Timer
 import os.path as osp
