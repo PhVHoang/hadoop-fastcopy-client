@@ -20,12 +20,12 @@ class WebHDFSDistClient(object):
   :param url: Hostname or IP address of HDFS namenode, prefixed with protocol,
     followed by WebHDFS port on namenode
   :param token: Hadoop delegation token.
-  :param \*\*kwargs: Keyword arguments passed to the base class' constructor.
+  :param **kwargs: Keyword arguments passed to the base class' constructor.
   """
 
   def __init__(self, src, dst, **kwargs):
-  	self.src=src
-  	self.dst=dst
+  	self.src = src
+  	self.dst = dst
   	_logger.info('Instantiated %r.', self)
 
   def __repr__(self):
@@ -48,7 +48,7 @@ class WebHDFSDistClient(object):
       `chunk_size` bytes. It will be passed two arguments, the path to the
       file being copied and the number of bytes transferred so far. On
       completion, it will be called once with `-1` as second argument.
-    :param \*\*kwargs: Keyword arguments forwarded to :meth:`write`.
+    :param **kwargs: Keyword arguments forwarded to :meth:`write`.
     On success, this method returns the remote copyed path.
     """
     start_time = time.time()
@@ -56,7 +56,6 @@ class WebHDFSDistClient(object):
       raise ValueError('Copy chunk size must be positive.')
 
     lock = Lock()
-    stat_lock = Lock()
 
     _logger.info('Copying %r to %r.', src_path, dst_path)
 
@@ -186,7 +185,7 @@ class WebHDFSDistClient(object):
           # check if parent exist
           try:
             pstatus = self.dst.status(osp.dirname(dst_path),strict=True)
-          except HdfsError, err:
+          except HdfsError as err:
             raise HdfsError('Parent directory of %r does not exist.', dst_path)
           else:
             # Remote path does not exist, and parent exist
