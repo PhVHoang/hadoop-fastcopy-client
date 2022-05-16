@@ -11,3 +11,4 @@ def distcp(from_path: str, to_path: str, log_path: Optional[str] = None) -> None
         log_path = "/user/namespace1/distcp_log_test"
 
     check_call(['hadoop', 'distcp', '-log', log_path, '-skipcrccheck', from_path, to_path], stderr=subprocess.STDOUT)
+
